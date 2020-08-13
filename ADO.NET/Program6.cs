@@ -1,5 +1,6 @@
 ﻿using Semicrol.Cursos.Dominio;
 using Semicrol.Cursos.Persistencia;
+using Semicrol.Cursos.PersistenciaADO;
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
@@ -13,7 +14,6 @@ namespace ADO.NET
     {
         static void Main(string[] args)
         {
-
 
             FacturaRepository facturaRepository = new FacturaRepository();
 

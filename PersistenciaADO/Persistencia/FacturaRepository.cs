@@ -1,11 +1,12 @@
 ﻿using Semicrol.Cursos.Dominio;
+using Semicrol.Cursos.Persistencia;
 using Semicrol.Cursos.Persistencia.Filtros;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
 
-namespace Semicrol.Cursos.Persistencia
+namespace Semicrol.Cursos.PersistenciaADO
 {
     public class FacturaRepository : IFacturaRepository
     {

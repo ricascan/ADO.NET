@@ -1,5 +1,4 @@
-﻿
-using Semicrol.Cursos.Dominio;
+﻿using Semicrol.Cursos.Dominio;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -8,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Semicrol.Cursos.Persistencia
+namespace Semicrol.Cursos.PersistenciaADO
 {
-    class LineaFacturaRepository 
+    public class LineaFacturaRepository
     {
         public void Insertar(LineaFactura lineaFactura)
         {
@@ -123,3 +122,4 @@ namespace Semicrol.Cursos.Persistencia
         }
     }
 }
+
