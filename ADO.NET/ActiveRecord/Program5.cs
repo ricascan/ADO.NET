@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
@@ -11,11 +12,10 @@ namespace ADO.NET
     {
         static void Main(string[] args)
         {
+
+
             
-            foreach (FacturaLineaDTO l in FacturaActiveRecord.BuscarTodasFacturasLineas())
-            {
-                Console.WriteLine(l);
-            }
+            
 
             Console.ReadLine();
         }

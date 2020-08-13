@@ -1,4 +1,6 @@
-﻿using System;
+﻿
+
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data.SqlClient;
@@ -89,47 +91,7 @@ namespace ADO.NET
             }
         }
 
-        public static List<FacturaActiveRecord> Listar(FiltroFactura filtro)
-        {
-            using (SqlConnection connection = new SqlConnection(Conexion()))
-            {
-                connection.Open();
-                String sql = "select * from facturas";
-                SqlCommand command = new SqlCommand();
-                if (filtro.Numero != 0)
-                {
-                    sql += " where numero = @numero";
-                    command.Parameters.AddWithValue("@numero", filtro.Numero);
-                    if(filtro.Concepto != null)
-                    {
-                        sql += " and concepto = @concepto";
-                        command.Parameters.AddWithValue("@concepto", filtro.Concepto);
-                    }
-                }
-                else
-                {
-                    if (filtro.Concepto != null)
-                    {
-                        sql += " where concepto = @concepto";
-                        command.Parameters.AddWithValue("@concepto", filtro.Concepto);
-                    }
-                }
-
-
-                command.Connection = connection;
-                command.CommandText = sql;
-                
-
-                SqlDataReader lector = command.ExecuteReader();
-                List<FacturaActiveRecord> facturaActiveRecords = new List<FacturaActiveRecord>();
-                while (lector.Read())
-                {
-                    facturaActiveRecords.Add(new FacturaActiveRecord((int)lector["numero"], lector["concepto"].ToString()));
-
-                }
-                return facturaActiveRecords;
-            }
-        }
+        
 
         public static FacturaActiveRecord BuscarFactura(int numero)
         {
@@ -144,7 +106,7 @@ namespace ADO.NET
                 FacturaActiveRecord factura = null;
                 if (lector.Read())
                 {
-                   factura = new FacturaActiveRecord((int)lector["numero"], lector["concepto"].ToString());
+                    factura = new FacturaActiveRecord((int)lector["numero"], lector["concepto"].ToString());
                 }
                 return factura;
             }
@@ -203,6 +165,22 @@ namespace ADO.NET
 
                 }
                 return facturaActiveRecords;
+            }
+        }
+
+        public static int SumaUnidades()
+        {
+            using (SqlConnection connection = new SqlConnection(Conexion()))
+            {
+                connection.Open();
+                String sql = "select sum(unidades) from lineas_factura";
+
+                SqlCommand command = new SqlCommand(sql, connection);
+
+                int total = 0;
+                total = (int)command.ExecuteScalar();
+
+                return total;
             }
         }
 
